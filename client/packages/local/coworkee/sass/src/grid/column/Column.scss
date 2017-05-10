@@ -1,0 +1,10 @@
+.x-gridcolumn {
+    .x-title-el {
+        @include single-text-shadow();
+        cursor: pointer;
+    }
+
+    .x-trigger-el {
+        cursor: pointer;
+    }
+}

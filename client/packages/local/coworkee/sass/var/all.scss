@@ -1,0 +1,160 @@
+/*
+ * This is is imported by virtue of "sass.var" in "app.json".
+ */
+
+// Compass variables
+$default-text-shadow-color: rgba(black, 0.25);
+$default-text-shadow-blur: 1px;
+$default-text-shadow-v-offset: 1px;
+$default-box-shadow-color: rgba(black, 0.2);
+$default-box-shadow-h-offset: 0;
+$default-box-shadow-v-offset: 0;
+$default-box-shadow-spread: 1px;
+$default-box-shadow-blur: 2px;
+$default-border-radius: 6px;
+
+// Application global variables
+$blocks-max-width: dynamic(1024px);
+$blocks-spacing: dynamic(8px);
+$form-max-width: dynamic(768px);
+$invalid-base-color: dynamic(#d63e08);
+$invalid-text-color: dynamic(white);
+$picture-border-radius: dynamic(50%);
+
+// Ext JS global variables
+// http://docs.sencha.com/extjs/latest/modern/Global_CSS.html
+$base-color: #39babf;
+$base-dark-color: #257c80;
+$base-light-color: #83efef;
+
+$neutral-color: #aaa;
+$neutral-dark-color: #353535;
+$neutral-medium-dark-color: #757575;
+$neutral-highlight-color: #d5d5d5;
+$neutral-light-color: #f5f5f5;
+
+$color: #0d1114;
+$highlight-color: #333;
+$background-color: white;
+$confirm-color: $base-color;
+
+$alert-color: $invalid-base-color;
+
+$font-size: 13px;
+$font-size-big: 14px;
+
+// Ext.panel.Header
+// http://docs.sencha.com/extjs/latest/modern/Ext.Panel.html#vars
+$panel-header-background-color: $panel-body-background-color;
+$panel-header-color: $panel-body-color;
+$panel-header-border-style: none;
+$panel-header-font-weight: 600;
+$panel-header-padding: 0;
+$panel-header-padding-big: 0;
+$panel-header-min-height: 53px;
+$panel-header-min-height-big: 53px;
+$panel-header-title-padding: 12px 16px;
+$panel-header-title-padding-big: 12px 16px;
+
+// Ext.Button
+// http://docs.sencha.com/extjs/latest/modern/Ext.Button.html#vars
+$button-padding: 12px 14px;
+$button-padding-big: 12px 14px;
+$button-icon-horizontal-spacing: 4px;
+
+// Ext.tab.Tab
+// http://docs.sencha.com/extjs/latest/modern/Ext.tab.Tab.html#vars
+$tab-padding: 15px;
+$tab-padding-big: 10px 14px;
+
+// Ext.Toolbar
+// http://docs.sencha.com/extjs/latest/modern/Ext.Toolbar.html#vars
+$toolbar-horizontal-spacing: 6px;
+$toolbar-horizontal-spacing-big: 6px;
+$toolbar-padding: 6px;
+$toolbar-padding-big: 6px;
+
+// Ext.field
+// http://docs.sencha.com/extjs/latest/modern/Ext.field.Field.html#vars
+$field-label-font-weight: bold;
+$field-label-padding: 10px 5px 10px 0;
+$field-label-padding-big: 13px 6px;
+$field-error-icon-under-size-big: 18px;
+$field-error-icon-under-margin-big: 0 4px 0 0;
+$field-error-message-line-height-big: 18px;
+$field-error-message-font-size-big: 13px;
+$field-error-under-margin-big: 4px;
+
+// Ext.field.Text
+// http://docs.sencha.com/extjs/latest/modern/Ext.field.Text.html#vars
+$textfield-input-background-color: $neutral-light-color;
+$textfield-input-border-color: $neutral-highlight-color;
+$textfield-focused-input-background-color: $background-color;
+$textfield-focused-input-border-color: $base-color;
+$textfield-input-padding-big: 11px 15px;
+$textfield-input-padding: 10px 15px 11px 15px;
+$textfield-input-padding-big: 11px 15px;
+$textfield-placeholder-color: $neutral-color;
+
+// Ext.field.trigger.Trigger
+// http://docs.sencha.com/extjs/latest/modern/Ext.field.trigger.Trigger.html#vars
+$trigger-icon-color: $neutral-color;
+$trigger-hovered-icon-color: $neutral-dark-color;
+$trigger-pressed-icon-color: $base-color;
+
+// Ext.field.trigger.Clear
+// http://docs.sencha.com/extjs/latest/modern/Ext.field.trigger.Clear.html#vars
+$cleartrigger-icon: $fa-var-times;
+
+// Ext.dataview.List
+// http://docs.sencha.com/extjs/latest/modern/Ext.dataview.List.html#vars
+$listitem-padding: 8px;
+$listitem-padding-big: 10px;
+
+// Ext.dataview.ItemHeader
+// http://docs.sencha.com/extjs/latest/modern/Ext.dataview.ItemHeader.html#vars
+$itemheader-color: $base-color;
+$itemheader-background-color: $listitem-background-color;
+$itemheader-border-style: none;
+$itemheader-font-size: 14px;
+$itemheader-font-size-big: 14px;
+$itemheader-font-weight: 600;
+
+// Ext.grid.HeaderContainer
+// http://docs.sencha.com/extjs/latest/modern/Ext.grid.HeaderContainer.html#vars
+$headercontainer-background-color: contrasted($background-color, 20%);
+$headercontainer-border-width: 0;
+
+// Ext.grid.column.Column
+// http://docs.sencha.com/extjs/latest/modern/Ext.grid.column.Column.html#vars
+$gridcolumn-sorted-background-color: contrasted($background-color, 25%);
+$gridcolumn-border-color: transparent;
+$gridcolumn-border-style: none;
+$gridcolumn-color: white;
+$gridcolumn-font-weight: 800;
+$gridcolumn-sort-icon-color: white;
+$gridcolumn-sort-asc-icon: $fa-var-angle-up $gridcolumn-sort-icon-font-size $font-icon-font-family;
+$gridcolumn-sort-desc-icon: $fa-var-angle-down $gridcolumn-sort-icon-font-size $font-icon-font-family;
+$gridcolumn-trigger-background-color: transparent;
+$gridcolumn-trigger-icon-color: white;
+$gridcolumn-trigger-width: 24px;
+
+// Ext.dataview.listswiper.Stepper
+// http://docs.sencha.com/extjs/latest/modern/Ext.dataview.listswiper.Stepper.html#vars
+$listswiperstepper-background-color: transparent;
+
+// Ext.dataview.IndexBar
+// http://docs.sencha.com/extjs/latest/modern/Ext.dataview.IndexBar.html#vars
+$indexbar-opacity: 0.25;
+$indexbar-pressed-background-color: $neutral-light-color;
+$indexbar-pressed-opacity: 1;
+$indexbar-height: 80vh;
+
+// Ext.Mask
+// http://docs.sencha.com/extjs/latest/modern/Ext.Mask.html#vars
+$mask-background-color: $neutral-light-color;
+$mask-opacity: 0.75;
+$mask-page-background-color: black;
+$mask-page-opacity: 0.5;
+$mask-message-color: $neutral-dark-color;
+$loading-spinner-color: $neutral-dark-color;

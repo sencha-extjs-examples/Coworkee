@@ -1,0 +1,21 @@
+.x-searchfield {
+    background-color: $textfield-input-background-color;
+
+    &.expandable {
+        .x-input-el {
+            padding-left: 0;
+        }
+
+        .x-body-wrap-el {
+            @include transition-property(width);
+            @include transition-duration(0.5s);
+            width: 180px;
+        }
+
+        &.x-empty:not(.x-focused) {
+            .x-body-wrap-el {
+                width: 92px;
+            }
+        }
+    }
+}

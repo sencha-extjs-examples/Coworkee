@@ -1,0 +1,85 @@
+// Note: image from https://pixabay.com (Creative Commons CC0)
+$auth-color: dynamic(white);
+$auth-background-color: dynamic(#123d40);
+$auth-background-image: dynamic(url('/resources/images/auth-background.jpg'));
+
+@include panel-ui(
+    $ui: 'auth',
+    $body-background-color: transparentize($auth-background-color, 0.75),
+    $body-color: $auth-color,
+    $body-padding: 24px
+);
+
+.auth-login {
+    @include background-size(cover);
+    background-image: $auth-background-image;
+    background-position: center;
+
+    > .x-body-el {
+        background-color: rgba(black, 0.25);
+    }
+
+    .x-formpanel {
+        width: 256px;
+
+        .x-button {
+            // Balance button vertical spacing with form fields
+            margin: $field-vertical-spacing/2 0;
+
+            .x-big {
+                margin: $field-vertical-spacing-big/2 0;
+            }
+        }
+    }
+
+    .auth-header,
+    .auth-footer {
+        color: $auth-color;
+        text-align: center;
+        padding: 16px;
+
+        a {
+            color: $auth-color;
+            text-decoration: none;
+        }
+    }
+
+    .auth-header {
+        .logo {
+            @include single-text-shadow;
+            color: $auth-color;
+            font-size: 40px;
+            line-height: 1;
+        }
+
+        .title, .caption {
+            white-space: nowrap;
+        }
+
+        .title {
+            font-size: 31px;
+            font-weight: bold;
+        }
+
+        .caption {
+            font-size: 15px;
+            text-transform: uppercase;
+        }
+    }
+
+    .auth-footer {
+        .logo {
+            font-size: 18px;
+            margin-right: 2px;
+            margin-left: -4px;
+
+            &::before {
+                vertical-align: middle;
+            }
+        }
+
+        .label {
+            font-weight: bold;
+        }
+    }
+}

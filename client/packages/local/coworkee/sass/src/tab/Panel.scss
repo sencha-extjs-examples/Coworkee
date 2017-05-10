@@ -1,0 +1,31 @@
+/**
+ * This file contains Ext.tab.Panel visual themes (ui)
+ * http://docs.sencha.com/extjs/latest/modern/Ext.tab.Bar.html#sass-mixins
+ * http://docs.sencha.com/extjs/latest/modern/Ext.tab.Tab.html#sass-mixins
+ */
+
+@include tabbar-ui(
+    $ui: 'flat',
+    $background-color: transparent,
+    $border-color: mix($neutral-light-color, $neutral-highlight-color, 50%),
+    $border-style: solid,
+    $border-width: 0 0 1px 0,
+    $horizontal-spacing: 0
+);
+
+@include tab-ui(
+    $ui: 'flat',
+    $active-background-color: transparent,
+    $active-border-color: $base-color,
+    $background-color: transparent,
+    $border-color: transparent,
+    $border-style: solid,
+    $border-width: 0 0 3px 0,
+    $border-radius: 0,
+    $border-radius-big: 0,
+    $color: $neutral-medium-dark-color,
+    $hovered-border-color: $neutral-light-color,
+    $focused-border-color: $neutral-highlight-color,
+    $focused-color: $neutral-dark-color,
+    $focused-outline-style: none
+);

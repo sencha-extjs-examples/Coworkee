@@ -1,0 +1,15 @@
+/**
+ * This file contains Ext.Toolbar visual themes (ui)
+ * http://docs.sencha.com/extjs/latest/modern/Ext.Toolbar.html#sass-mixins
+ */
+
+@include toolbar-ui(
+    $ui: 'tools',
+    $background-color: $neutral-light-color,
+    $box-shadow: 0 4px 2px -3px rgba(black, 0.2) inset
+);
+
+@include toolbar-ui(
+    $ui: 'flat',
+    $background-color: transparent
+);

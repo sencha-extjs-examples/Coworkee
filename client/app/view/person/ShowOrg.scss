@@ -1,0 +1,11 @@
+.person-org {
+    .x-dataview-item {
+        cursor: pointer;
+        width: 20%;
+    }
+    .picture {
+        @include border-radius(0);
+        margin-top: -1px;
+        padding-bottom: 100%;
+    }
+}

@@ -1,0 +1,86 @@
+$historyitem-badge-size: dynamic(22px);
+
+@include dataview-ui(
+    $ui: 'history',
+    $background-color: $neutral-light-color,
+    $item-background-color: $neutral-light-color,
+    $item-padding: 5px 15px,
+    $item-padding-big: 5px 15px
+);
+
+.history-visual {
+    white-space: nowrap;
+
+    .action, .picture {
+        display: inline-block;
+        position: relative;
+        vertical-align: middle;
+    }
+
+    .action {
+        border-radius: 50%;
+        font-size: 14px;
+        height: $historyitem-badge-size;
+        width: $historyitem-badge-size;
+        line-height: $historyitem-badge-size;
+        text-align: center;
+        z-index: 1;
+    }
+
+    .picture {
+        margin-left: -$historyitem-badge-size*0.4;
+        z-index: 0;
+    }
+}
+
+.historyview {
+    .history-item {
+        cursor: pointer;
+
+        .tablet-profile & {
+            width: 100%;
+
+            @media screen and (max-width: 600px) {
+                width: 50%;
+            }
+            @media screen and (max-width: 400px) {
+                width: 100%;
+            }
+        }
+
+        .phone-profile.x-portrait & {
+            width: 100%;
+        }
+
+        .phone-profile.x-landscape & {
+            width: 50%;
+        }
+    }
+
+    .history-item-wrapper {
+        align-items: center;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .history-details {
+        padding: 8px;
+        line-height: 1.4;
+        flex: 1;
+        width: 0;
+
+        > * {
+            @include ellipsis;
+        }
+
+        .display {
+            display: block;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .date {
+            font-size: 13px;
+        }
+    }
+}

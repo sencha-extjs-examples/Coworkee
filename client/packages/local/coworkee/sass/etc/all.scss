@@ -1,0 +1,14 @@
+/*
+ * This is is imported by virtue of "sass.etc" in "app.json".
+ */
+@function contrasted($color, $percent: 50%) {
+    @if $percent < 0 {
+        $dark: lighten($color, -$percent);
+        $light: darken($color, -$percent);
+    } @else {
+        $dark: darken($color, $percent);
+        $light: lighten($color, $percent);
+    }
+
+    @return if(brightness($color) > 50, $dark, $light);
+}
