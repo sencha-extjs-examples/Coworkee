@@ -1,0 +1,15 @@
+.x-mask {
+    &.x-has-message {
+        .x-loading-spinner-outer {
+            height: auto;
+        }
+    }
+
+    &.x-loading-mask {
+        .x-mask-inner {
+            background-color: transparent;
+        }
+    }
+}
+
+@include st-loading-spinner(26px, $loading-spinner-color, 4px, 2px);

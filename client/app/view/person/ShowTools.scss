@@ -1,0 +1,49 @@
+.person-tools {
+    z-index: 1;
+
+    > .x-body-el {
+        padding: 12px 8px 24px 8px;
+    }
+
+    .location {
+        background-color: contrasted($background-color, 4%);
+        padding: 8px 16px;
+        text-align: center;
+
+        .time,
+        .city {
+            display: inline-block;
+            font-size: 13px;
+        }
+
+        .time::before {
+            content: '|';
+            margin: 0 4px;
+        }
+
+        .city {
+            font-weight: bold;
+        }
+    }
+
+    @media screen and (min-width: 600px) {
+        .x-toolbar {
+            margin-left: $show-header-picture-size + $show-header-spacing * 2;
+            margin-right: $show-header-spacing;
+        }
+    }
+
+    @media screen and (max-width: 599px) {
+        margin-top: -38px;
+
+        > .x-body-el {
+            flex-direction: column;
+            padding-bottom: 0;
+        }
+
+        .location {
+            margin-top: $show-header-spacing;
+            width: 100%;
+        }
+    }
+}

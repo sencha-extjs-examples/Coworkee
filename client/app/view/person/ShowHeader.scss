@@ -1,0 +1,36 @@
+.person-header {
+    overflow: visible;
+
+    > .x-body-el {
+        overflow: visible;
+    }
+
+    .header-picture {
+        @include single-box-shadow($hoff: 0, $voff: 4px, $spread: -2px);
+        margin: 0 $show-header-spacing $show-header-spacing 0;
+        border: 8px solid $panel-header-background-color;
+        height: $show-header-picture-size;
+        width: $show-header-picture-size;
+    }
+
+    @media screen and (min-width: 600px) {
+        .header-picture {
+            margin-bottom: -$show-header-picture-size/2;
+        }
+    }
+
+    @media screen and (max-width: 599px) {
+        > .x-body-el {
+            padding-bottom: 32px;
+        }
+
+        .header-picture {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .header-title {
+            text-align: center;
+        }
+    }
+}

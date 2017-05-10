@@ -1,0 +1,54 @@
+/**
+ * This file contains Ext.dataview.DataView visual themes (ui)
+ * http://docs.sencha.com/extjs/latest/modern/Ext.dataview.DataView.html#sass-mixins
+ */
+
+@include dataview-ui(
+    $ui: 'light',
+    $item-color: $neutral-dark-color,
+    $item-hovered-color: contrasted($neutral-dark-color, -5%),
+    $item-selected-color: contrasted($neutral-dark-color, -20%),
+    $item-pressed-color: contrasted($neutral-dark-color, -10%),
+    $item-background-color: $neutral-light-color,
+    $item-alt-background-color: contrasted($neutral-light-color, -5%),
+    $item-hovered-background-color: contrasted($neutral-light-color, 5%),
+    $item-selected-background-color: $base-color,
+    $item-pressed-background-color: contrasted($neutral-light-color, 10%)
+);
+
+@include dataview-ui(
+    $ui: 'dark',
+    $background-color: $neutral-dark-color,
+    $item-color: $neutral-light-color,
+    $item-hovered-color: contrasted($neutral-light-color, -5%),
+    $item-selected-color: contrasted($neutral-light-color, -20%),
+    $item-pressed-color: contrasted($neutral-light-color, -10%),
+    $item-background-color: $neutral-dark-color,
+    $item-alt-background-color: contrasted($neutral-dark-color, -5%),
+    $item-hovered-background-color: contrasted($neutral-dark-color, 5%),
+    $item-selected-background-color: $base-color,
+    $item-pressed-background-color: contrasted($neutral-dark-color, 15%)
+);
+
+@include dataview-ui(
+    $ui: 'large',
+    $item-font-weight: 400,
+    $item-font-size: 14px,
+    $item-font-size-big: 14px,
+    $item-padding: 16px,
+    $item-padding-big: 18px
+);
+
+@include dataview-ui(
+    $ui: 'thumbnails',
+    $background-color: $neutral-light-color
+);
+
+.x-dataview-thumbnails {
+    .x-dataview-item {
+        .thumbnail {
+            @include background-size('cover');
+            cursor: pointer;
+        }
+    }
+}

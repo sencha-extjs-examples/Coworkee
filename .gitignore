@@ -1,0 +1,5 @@
+/.vscode
+/client/app.watch.lock
+/server/*.db
+/server/node_modules
+*.log

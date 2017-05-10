@@ -1,0 +1,35 @@
+.phone-profile {
+    .x-list.listing {
+        border-top: 1px solid $neutral-light-color;
+
+        .x-listitem-body-el {
+            position: relative;
+            flex: 1 1;
+        }
+
+        .x-listitem-body {
+            .picture {
+                flex: 0 0 auto;
+            }
+
+            .item-details {
+                padding: 0 8px;
+            }
+
+            .item-title {
+                @include ellipsis;
+                font-weight: bold;
+            }
+
+            .item-caption {
+                @include ellipsis;
+                font-size: 12px;
+            }
+
+            .item-stats {
+                font-size: 11px;
+                text-align: right;
+            }
+        }
+    }
+}

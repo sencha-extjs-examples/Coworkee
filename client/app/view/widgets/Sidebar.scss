@@ -1,0 +1,100 @@
+$sidebar-background-color: dynamic($neutral-dark-color);
+$sidebar-color: dynamic($neutral-light-color);
+$sidebar-font-size: dynamic(14px);
+$sidebar-font-size-big: dynamic(14px);
+$sidebar-item-padding: dynamic(16px);
+$sidebar-item-padding-big: dynamic(18px);
+$sidebar-icon-size: dynamic(21px);
+$sidebar-icon-size-big: dynamic(21px);
+$sidebar-icon-horizontal-spacing: dynamic($sidebar-item-padding);
+$sidebar-icon-horizontal-spacing-big: dynamic($sidebar-item-padding-big);
+$sidebar-slide-width: dynamic(75vw);
+$sidebar-micro-width: dynamic($sidebar-icon-size + $sidebar-item-padding*2);
+$sidebar-micro-expanded-width: dynamic(256px);
+
+.sidebar {
+    $sidebar-picture-size: $sidebar-icon-size*1.6;
+    $sidebar-picture-size-big: $sidebar-icon-size-big*1.8;
+    $sidebar-picture-spacing: (2*$sidebar-item-padding + $sidebar-icon-size - $sidebar-picture-size)/2;
+    $sidebar-picture-spacing-big: (2*$sidebar-item-padding-big + $sidebar-icon-size-big - $sidebar-picture-size-big)/2;
+
+    background-color: $sidebar-background-color;
+    color: $sidebar-color;
+    overflow: visible;
+
+    > .x-dock {
+        overflow: visible;
+    }
+
+    @include button-ui(
+        $ui: 'large',
+        $icon-horizontal-spacing: $sidebar-icon-horizontal-spacing,
+        $icon-horizontal-spacing-big: $sidebar-icon-horizontal-spacing-big
+    );
+
+    @include button-ui(
+        $ui: 'picture',
+        $icon-horizontal-spacing: $sidebar-picture-spacing,
+        $icon-horizontal-spacing-big: $sidebar-picture-spacing-big,
+        $icon-size: $sidebar-picture-size,
+        $icon-size-big: $sidebar-picture-size-big,
+        $icon-font-size: $sidebar-picture-size,
+        $icon-font-size-big: $sidebar-picture-size-big,
+        $padding: $sidebar-picture-spacing,
+        $padding-big: $sidebar-picture-spacing-big
+    );
+}
+
+.sidebar-body-el {
+    z-index: 2;
+}
+
+.sidebar-micro {
+    width: $sidebar-micro-width;
+}
+
+.sidebar-micro-body-el {
+    @include transition-property(width);
+    @include transition-duration(0.25s);
+    width: $sidebar-micro-width;
+
+    > div {
+        width: $sidebar-micro-expanded-width;
+    }
+
+    .expanded > .x-dock > & {
+        width: $sidebar-micro-expanded-width;
+    }
+}
+
+.sidebar-slide {
+    width: 0;
+}
+
+.sidebar-slide-body-el {
+    @include transition-property(margin-left);
+    @include transition-duration(0.25s);
+    margin-top: $sidebar-icon-size-big + $sidebar-item-padding-big * 2;
+    margin-left: -$sidebar-slide-width;
+    width: $sidebar-slide-width;
+
+    .expanded > & {
+        margin-left: 0;
+    }
+}
+
+.sidebar-mask {
+    background: black;
+    display: none;
+    opacity: .005;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 1;
+
+    .sidebar.expanded > & {
+        display: block;
+    }
+}

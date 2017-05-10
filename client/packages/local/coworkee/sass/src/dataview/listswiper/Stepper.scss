@@ -1,0 +1,21 @@
+.x-listswiperstepper {
+    .x-text {
+        line-height: 1.4;
+    }
+
+    .subject {
+        @include transition-property(height);
+        @include transition-duration(0.25s);
+        @include ellipsis;
+
+        display: block;
+        font-size: 12px;
+        height: 0;
+    }
+
+    &.x-active {
+        .subject {
+            height: 18px;
+        }
+    }
+}

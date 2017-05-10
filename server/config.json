@@ -1,0 +1,48 @@
+{
+    "cors": {
+        "enabled": false
+    },
+
+    "cron": {
+        "reset": "0 * * * *"
+    },
+
+    "direct": {
+        "rootNamespace": "Server",
+        "apiName": "API",
+        "apiUrl": "/api",
+        "classRouteUrl": "/api",
+        "classPath": "/api",
+        "server": "localhost",
+        "port": "3000",
+        "protocol": "http",
+        "timeout": 30000,
+        "cacheAPI": false,
+        "relativeUrl": false,
+        "appendRequestResponseObjects": true,
+        "enableProcessors": false,
+        "enableMetadata": true,
+        "responseHelper": true
+    },
+
+    "database": {
+        "dialect": "sqlite",
+        "storage": ".//data.db",
+        "logging": false,
+        "define": {
+            "createdAt": "created",
+            "updatedAt": "updated",
+            "deletedAt": "deleted",
+            "underscored": true
+        }
+    },
+
+    "session": {
+        "secret": "62P59nE68F38q0q2wvHho58oR38aY7U9",
+        "duration": 86400
+    },
+
+    "client": {
+        "path": "../client"
+    }
+}

@@ -1,0 +1,57 @@
+.x-listitem-listing {
+    .item-caption,
+    .item-title,
+    .item-stats,
+    .item-info {
+        @include ellipsis;
+
+        > .x-fa {
+            @include opacity(0.75);
+            font-size: 14px;
+        }
+    }
+
+    .item-title {
+        font-weight: bold;
+    }
+
+    .item-caption {
+        font-size: 12px;
+    }
+
+    .item-stats {
+        font-size: 11px;
+    }
+
+    .item-details {
+        padding: 0 8px;
+    }
+
+    .x-big & {
+        .item-title {
+            font-size: 14px;
+        }
+        .item-caption {
+            font-size: 13px;
+        }
+        .item-stats {
+            font-size: 12px;
+        }
+    }
+}
+
+.x-listitem-listing-inner-el {
+    width: 100%;
+
+    > .x-innerhtml {
+        display: flex;
+        flex: 1;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .item-details {
+        flex: 1 1 0px;
+        width: 0;
+    }
+}

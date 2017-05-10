@@ -1,0 +1,81 @@
+/**
+ * This file contains Ext.Button visual themes (ui)
+ * http://docs.sencha.com/extjs/latest/modern/Ext.Button.html#sass-mixins
+ */
+
+.x-button .x-text-el {
+    .title {
+        text-transform: uppercase;
+    }
+    .value {
+        opacity: 0.5;
+        font-size: 13px;
+    }
+}
+
+@include button-ui(
+    $ui: 'block',
+    $border-radius: 0,
+    $border-width: 0,
+    $icon-size: 28px,
+    $icon-size-big: 28px,
+    $icon-font-size: 20px,
+    $icon-font-size-big: 20px,
+    $font-size: 18px,
+    $font-size-big: 18px,
+    $font-weight: bold,
+    $line-height: 1.4,
+    $line-height-big: 1.4,
+    $icon-only-padding: 16px,
+    $icon-only-padding-big: 16px,
+    $padding: 16px,
+    $padding-big: 16px
+);
+
+@include button-ui(
+    $ui: 'action',
+    $border-radius: 0,
+    $border-width: 0
+);
+
+@include button-ui(
+    $ui: 'large',
+    $font-size: 14px,
+    $font-size-big: 14px,
+    $icon-size: 21px,
+    $icon-size-big: 21px,
+    $icon-font-size: 21px,
+    $icon-font-size-big: 21px,
+    $icon-only-padding: 16px,
+    $icon-only-padding-big: 18px,
+    $padding: 16px,
+    $padding-big: 18px
+);
+
+@include button-ui(
+    $ui: 'flat',
+    $background-color: rgba(white, 0),
+    $color: $neutral-medium-dark-color,
+    $pressed-color: $base-color
+);
+
+@include button-ui(
+    $ui: 'dark',
+    $color: $neutral-light-color,
+    $pressed-color: $neutral-light-color,
+    $background-color: $neutral-dark-color,
+    $pressed-background-color: $base-color
+);
+
+@include button-ui(
+    $ui: 'segmented',
+    $border-color: transparent,
+    $border-style: solid,
+    $border-width: 0 0 2px 0,
+    $hovered-border-color: $neutral-light-color,
+    $pressed-border-color: $base-color,
+    $icon-only-padding: $tab-padding,
+    $icon-only-padding-big: $tab-padding-big,
+    $padding: $tab-padding,
+    $padding-big: $tab-padding-big
+);

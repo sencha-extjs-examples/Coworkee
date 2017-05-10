@@ -1,0 +1,27 @@
+.main-menu {
+    .x-dataview-item {
+        cursor: pointer;
+
+        .icon {
+            display: inline-block;
+            font-size: $sidebar-icon-size;
+            line-height: 1;
+            margin-right: $sidebar-icon-horizontal-spacing;
+            height: $sidebar-icon-size;
+            width: $sidebar-icon-size;
+            text-align: center;
+            vertical-align: middle;
+
+            .x-big & {
+                font-size: $sidebar-icon-size-big;
+                margin-right: $sidebar-icon-horizontal-spacing-big;
+                height: $sidebar-icon-size-big;
+                width: $sidebar-icon-size-big;
+            }
+        }
+    }
+
+    .x-dataview-dark {
+        border-bottom: 2px solid contrasted($neutral-dark-color, 5%);
+    }
+}

@@ -1,0 +1,197 @@
+@mixin action-ui($ui, $background-color, $color) {
+    $ui-suffix: ui-suffix($ui);
+
+    .action#{$ui-suffix} {
+        background-color: $background-color;
+        color: $color;
+    }
+
+    @include button-ui(
+        $ui: action#{$ui-suffix},
+        $background-color: $background-color,
+        $color: $color,
+        $border-radius: 50%,
+        $icon-size: 20px,
+        $icon-size-big: 22px,
+        $icon-font-size: 20px,
+        $icon-font-size-big: 22px,
+        $icon-only-padding: 8px,
+        $icon-only-padding-big: 10px,
+        $padding: 8px,
+        $padding-big: 10px
+    );
+
+    @include listswiperstepper-ui(
+        $ui: $ui,
+        $active-background-color: $background-color,
+        $active-color: $color,
+        $undo-background-color: $background-color,
+        $undo-color: $color
+    );
+}
+
+@include action-ui($ui: 'phone', $color: white, $background-color: #20c659);
+@include action-ui($ui: 'skype', $color: white, $background-color: #00aff0);
+@include action-ui($ui: 'linkedin', $color: white, $background-color: #0077b5);
+@include action-ui($ui: 'email', $color: white, $background-color: #428c8A);
+@include action-ui($ui: 'profile', $color: white, $background-color: #4867aa);
+@include action-ui($ui: 'remove', $color: white, $background-color: #ff1540);
+@include action-ui($ui: 'edit', $color: black, $background-color: #ffcc33);
+
+a {
+    color: mix($base-dark-color, $base-color);
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
+
+    .x-selected & {
+        color: $base-light-color;
+    }
+}
+
+.picture {
+    @include border-radius($picture-border-radius);
+    @include background-size(cover);
+    background-color: $neutral-color;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.picture {
+    height: 38px;
+    width: 38px;
+
+    &.large {
+        height: 48px;
+        width: 48px;
+    }
+}
+
+.caption {
+    font-size: 0.7em;
+    font-weight: normal;
+}
+
+// Loading screen while loading the application (resources and initialization)
+@include keyframes(rotate-animation) {
+    0% { @include rotate(0); }
+    100% { @include rotate(360); }
+}
+
+body.launching {
+    @include background-size(cover);
+    background-color: $auth-background-color;
+    background-image: $auth-background-image;
+    background-position: center;
+
+    &::before {
+        @include animation(rotate-animation 1s linear infinite);
+        @include transform-origin(50% 50%);
+        @include background-size(cover);
+        background-image: url(/resources/images/loading.png);
+        background-position: center;
+        content: '';
+        position: absolute;
+        margin-top: -15px;
+        margin-left: -15px;
+        top: 50%;
+        left: 50%;
+        width: 41px;
+        height: 41px;
+    }
+}
+
+// block management
+.page-constrained {
+    > .x-body-el,
+    > .x-innerhtml,
+    > .x-dock-horizontal {
+        max-width: $blocks-max-width;
+        margin: 0 auto;
+        width: 100%;
+    }
+}
+
+.blocks {
+    padding: $blocks-spacing 0 0 $blocks-spacing;
+
+    .x-panel-block {
+        margin: 0 $blocks-spacing $blocks-spacing 0;
+    }
+
+    .tablet-profile & {
+        > .x-body-el {
+            display: flex;
+            flex-direction: row;
+
+            > .blocks-column:nth-child(1) {
+                flex: 2;
+            }
+
+            > .blocks-column:nth-child(2) {
+                flex: 1;
+
+                @media screen and (max-width: 800px) {
+                    flex: 2;
+                }
+            }
+
+            @media screen and (max-width: 600px) {
+                flex-direction: column;
+            }
+        }
+    }
+}
+
+.block-section {
+    display: inline-block;
+    vertical-align: top;
+    line-height: 1.4;
+
+    .item {
+        padding: 0 16px 16px;
+
+        .label {
+            color: contrasted($base-color, 15%);
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+
+        .value {
+            font-weight: 500;
+        }
+    }
+}
+
+.x-dataview-thumbnails {
+    .x-dataview-item {
+        .thumbnail {
+            padding-bottom: 100%;
+        }
+
+        .phone-profile & {
+            .x-portrait & {
+                width: 25%;
+            }
+            .x-landscape & {
+                width: 20%;
+            }
+        }
+
+        .tablet-profile & {
+            width: 100%/6;
+
+            @media screen and (max-width: 800px) {
+                width: 100%/4;
+            }
+            @media screen and (max-width: 400px) {
+                width: 100%/3;
+            }
+            @media screen and (max-width: 250px) {
+                width: 100%/2;
+            }
+        }
+    }
+}

@@ -1,0 +1,93 @@
+.home-events {
+    .x-dataview-item {
+        cursor: pointer;
+        margin: 0 0 $blocks-spacing 0;
+        width: calc(50% - #{$blocks-spacing/2});
+
+        &:nth-child(odd) {
+            margin-right: $blocks-spacing;
+        }
+
+        .phone-profile & {
+            @media screen and (max-width: 400px) {
+                margin-right: 0;
+                width: 100%;
+            }
+        }
+
+        .tablet-profile & {
+            @media screen and (max-width: 400px), (min-width: 600px) and (max-width: 800px) {
+                margin-right: 0;
+                width: 100%;
+            }
+        }
+    }
+
+    .event-header {
+        background-color: $neutral-highlight-color;
+        color: $neutral-dark-color;
+        display: inline-block;
+        font-size: 12px;
+        padding: 6px 16px;
+
+        .date, .title {
+            display: inline-block;
+        }
+
+        .date {
+            font-weight: bold;
+        }
+
+        .title {
+            &:before {
+                content: '|';
+                margin: 0 4px;
+            }
+        }
+
+        &.type-birthday {
+            background-color: $base-light-color;
+            color: $base-dark-color;
+        }
+
+        &.type-ended {
+            background-color: $neutral-light-color;
+            border: 1px solid $neutral-color;
+            color: $neutral-dark-color;
+        }
+    }
+
+    .event-content {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 10px;
+
+        > .picture {
+            flex: 0 0 auto;
+            margin-right: 12px;
+        }
+
+        > .details {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            overflow: hidden;
+            line-height: 1.4;
+
+            > * {
+                @include ellipsis;
+            }
+        }
+
+        .person-name {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .person-title,
+        .person-years {
+            font-size: 13px;
+        }
+    }
+}

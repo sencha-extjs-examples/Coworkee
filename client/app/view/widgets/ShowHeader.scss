@@ -1,0 +1,40 @@
+.show-header {
+    @include single-box-shadow;
+    min-height: 128px;
+    position: relative;
+    z-index: 1;
+
+    > .x-body-el {
+        padding: 16px 24px;
+    }
+
+    .header-title {
+        line-height: 1.4;
+        padding: 6px;
+
+        .icon {
+            border-right: 1px solid;
+            color: $base-color;
+            float: left;
+            font-size: 38px;
+            margin-right: 8px;
+            padding-right: 8px;
+        }
+
+        .name,
+        .desc {
+            white-space: nowrap;
+        }
+
+        .name {
+            color: $base-color;
+            font-size: 24px;
+            font-weight: 400;
+        }
+
+        .desc {
+            font-size: 16px;
+        }
+    }
+}
+
