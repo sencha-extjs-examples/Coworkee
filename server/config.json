@@ -39,7 +39,8 @@
 
     "session": {
         "secret": "62P59nE68F38q0q2wvHho58oR38aY7U9",
-        "duration": 86400
+        "duration": 86400,
+        "readonly": false
     },
 
     "client": {

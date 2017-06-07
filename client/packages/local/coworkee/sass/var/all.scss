@@ -47,7 +47,6 @@ $font-size-big: 14px;
 // http://docs.sencha.com/extjs/latest/modern/Ext.Panel.html#vars
 $panel-header-background-color: $panel-body-background-color;
 $panel-header-color: $panel-body-color;
-$panel-header-border-style: none;
 $panel-header-font-weight: 600;
 $panel-header-padding: 0;
 $panel-header-padding-big: 0;
@@ -158,3 +157,13 @@ $mask-page-background-color: black;
 $mask-page-opacity: 0.5;
 $mask-message-color: $neutral-dark-color;
 $loading-spinner-color: $neutral-dark-color;
+
+// Ext.Sheet
+// http://docs.sencha.com/extjs/latest/modern/Ext.Sheet.html#vars
+$sheet-border-style: none;
+
+// Ext.Toast
+// http://docs.sencha.com/extjs/latest/modern/Ext.Toast.html#vars
+$toast-background-color: rgba(black, 0.75);
+$toast-padding: 8px;
+$toast-padding-big: 10px;
