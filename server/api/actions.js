@@ -24,7 +24,20 @@ var Service = {
 
     insert: function(params, callback, sid, req) {
         session.verify(req).then(function(session) {
-            return session.user.createAction(params);
+            return models.Person.lookup(params.recipient_id).then(function(person) {
+                var subject = models.Action.subject(params.type, person);
+                if (subject === null) {
+                    throw errors.types.invalidParams({
+                        path: 'type', message: 'Invalid action type'
+                    });
+                }
+
+                return session.user.createAction({
+                    recipient_id: params.recipient_id,
+                    type: params.type,
+                    subject: subject
+                });
+            });
         }).then(function(row) {
             callback(null, {
                 data: row

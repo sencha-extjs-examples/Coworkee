@@ -4,8 +4,8 @@ Ext.define('App.model.Action', {
     fields: [
         { name: 'type', type: 'string' },
         { name: 'subject', type: 'string' },
-        { name: 'created', type: 'date', dateFormat: 'C' },
-        { name: 'recipient_id', reference: 'Person' }
+        { name: 'recipient_id', reference: 'Person' },
+        { name: 'created', type: 'date', dateFormat: 'C', persist: false }
     ],
 
     toUrl: function() {
