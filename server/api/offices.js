@@ -5,6 +5,18 @@ var session = require('../utils/session.js');
 var errors = require('../utils/errors.js');
 var models = require('../models');
 
+function writableFields(params) {
+    return helpers.extractFields(params, [
+        'name',
+        'address',
+        'postcode',
+        'region',
+        'city',
+        'country',
+        'location'
+    ]);
+}
+
 var Service = {
     list: function(params, callback, sid, req) {
         session.verify(req).then(function() {
@@ -23,7 +35,7 @@ var Service = {
     insert: function(params, callback, sid, req) {
         session.verify(req).then(function() {
             return models.sequelize.transaction(function(t) {
-                return models.Office.create(params, {
+                return models.Office.create(writableFields(params), {
                     transaction: t
                 }).then(function(row) {
                     if (session.readonly) {
@@ -58,7 +70,7 @@ var Service = {
                 });
             }
             return models.sequelize.transaction(function(t) {
-                return row.update(params, {
+                return row.update(writableFields(params), {
                     transaction: t
                 }).then(function(row) {
                     if (session.readonly) {

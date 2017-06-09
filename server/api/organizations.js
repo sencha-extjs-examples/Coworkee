@@ -5,6 +5,13 @@ var session = require('../utils/session.js');
 var errors = require('../utils/errors.js');
 var models = require('../models');
 
+function writableFields(params) {
+    return helpers.extractFields(params, [
+        'name',
+        'manager_id'
+    ]);
+}
+
 var Service = {
     list: function(params, callback, sid, req) {
         session.verify(req).then(function() {
@@ -23,7 +30,7 @@ var Service = {
     insert: function(params, callback, sid, req) {
         session.verify(req).then(function() {
             return models.sequelize.transaction(function(t) {
-                return models.Organization.create(params, {
+                return models.Organization.create(writableFields(params), {
                     transaction: t
                 }).then(function(row) {
                     if (session.readonly) {
@@ -58,7 +65,7 @@ var Service = {
                 });
             }
             return models.sequelize.transaction(function(t) {
-                return row.update(params, {
+                return row.update(writableFields(params), {
                     transaction: t
                 }).then(function(row) {
                     if (session.readonly) {

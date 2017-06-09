@@ -145,6 +145,19 @@ var Helpers = {
         }
 
         return [];
+    },
+
+    extractFields: function(inputs, names) {
+        var fields = {};
+        names.forEach(function(name) {
+            if (inputs.hasOwnProperty(name)) {
+                var value = inputs[name];
+                if (value !== undefined) {
+                    fields[name] = value;
+                }
+            }
+        });
+        return fields;
     }
 }
 
