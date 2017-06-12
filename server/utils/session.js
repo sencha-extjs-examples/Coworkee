@@ -4,8 +4,8 @@
 
 "use strict";
 
-var errors = require('../utils/errors');
-var config = require('../config.json');
+var errors = require('./errors');
+var config = require('./config');
 var models = require('../models');
 var jwt = require('jsonwebtoken');
 
