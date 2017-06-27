@@ -5,6 +5,7 @@ $auth-background-image: dynamic(url('/resources/images/auth-background.jpg'));
 
 @include panel-ui(
     $ui: 'auth',
+    $background-color: transparent,
     $body-background-color: transparentize($auth-background-color, 0.75),
     $body-color: $auth-color,
     $body-padding: 24px

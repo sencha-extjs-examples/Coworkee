@@ -17,6 +17,7 @@ Ext.define('App.view.office.Wizard', {
             xtype: 'textfield',
             reference: 'name',
             label: 'Name',
+            required: true,
             bind: '{record.name}'
         }, {
             xtype: 'textfield',
