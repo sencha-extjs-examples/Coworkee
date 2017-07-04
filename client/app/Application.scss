@@ -80,6 +80,11 @@ a {
     100% { @include rotate(360); }
 }
 
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
 body.launching {
     @include background-size(cover);
     background-color: $auth-background-color;
