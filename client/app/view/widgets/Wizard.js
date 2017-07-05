@@ -113,6 +113,15 @@ Ext.define('App.view.widgets.Wizard', {
         xtype: 'tabpanel',
         reference: 'tabs',
 
+        layout: {
+            /**
+             * Hidden items don't have their bindings evaluated until they become visible,
+             * so we need to turn deferRender off in case hidden tabs contain fields bound
+             * to the record (and thus have the form correctly validated).
+             */
+            deferRender: false
+        },
+
         defaults: {
             userCls: 'wizard-screen',
             scrollable: 'y',
