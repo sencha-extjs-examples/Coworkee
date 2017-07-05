@@ -2,10 +2,6 @@ Ext.define('App.view.viewport.ViewportController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.viewport',
 
-    mixins: [ 'Ext.mixin.Mashup' ],
-
-    requiredScripts: [ '/api' ],
-
     listen: {
         controller: {
             '*': {

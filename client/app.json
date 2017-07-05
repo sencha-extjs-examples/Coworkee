@@ -74,6 +74,15 @@
              * https://console.developers.google.com/apis/credentials)
              */
             "options": "?v=3"
+        },
+
+        /**
+         * If the app runs inside Cordova, '//foo.bar' urls are resolved as 'file://foo.bar'.
+         * Uncomment the following lines to enforce required scripts to use HTTPS instead.
+         * https://github.com/sencha-extjs-examples/Coworkee/issues/4
+         */
+        "redirect": {
+            "//maps.googleapis.com/maps/api/js{options}": "https://maps.googleapis.com/maps/api/js{options}"
         }
     },
 
@@ -234,11 +243,16 @@
      */
     "js": [
         {
-            "path": "${framework.dir}/build/ext-modern-all-debug.js"
-        },
-        {
             "path": "app.js",
             "bundle": true
+        },
+        {
+            /**
+             * Ext.Direct API URL: if the app runs inside Cordova, you will need to change
+             * the path to the absolute endpoint (e.g. https://192.168.1.2:3000/api).
+             */
+            "path": "/api",
+            "remote": true
         }
     ],
 

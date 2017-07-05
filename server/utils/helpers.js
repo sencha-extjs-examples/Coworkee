@@ -1,6 +1,15 @@
 "use strict";
 
+var config = require('../utils/config');
+
 var Helpers = {
+
+    apiUrl: (function() {
+        var direct = config.direct;
+        var scheme = direct.protocol;
+        var port = direct.port;
+        return (scheme? scheme + '://' : '//') + direct.server + (port? ':' + port : '');
+    }()),
 
     searchableAttributes: function(model) {
         var attributes = model.attributes || [];
