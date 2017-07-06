@@ -17,7 +17,7 @@ Ext.define('App.view.widgets.ShowController', {
 
         // Scroll to the top of the view but make sure that the view is still
         // valid since the record is reset to null when the view is destroyed.
-        if (!view.destroyed) {
+        if (!view.destroying && !view.destroyed) {
             view.getScrollable().scrollTo(null, 0, true);
         }
     },
