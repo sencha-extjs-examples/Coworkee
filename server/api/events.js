@@ -74,12 +74,12 @@ var Service = {
                 sequelize.query(
                     'SELECT COUNT(*) AS count '+
                     'FROM (' + queries + ') '+
-                    'WHERE ' + where, {
+                    (where? 'WHERE ' + where : ''), {
                         type: sequelize.QueryTypes.SELECT
                     }),
                 sequelize.query(
                     'SELECT * FROM (' + queries + ') '+
-                    'WHERE ' + where + ' '+
+                    (where? 'WHERE ' + where + ' ' : '' ) +
                     'ORDER BY ' + order + ' '+
                     'LIMIT :limit', {
                         type: sequelize.QueryTypes.SELECT,

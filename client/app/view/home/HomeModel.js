@@ -16,7 +16,7 @@ Ext.define('App.view.home.HomeModel', {
         },
         events: {
             type: 'events',
-            autoLoad: true,
+            autoLoad: false,    // loaded from HomeController
             pageSize: 8
         }
     }
