@@ -56,7 +56,12 @@ module.exports = {
                         }),
                         // associate Action -> Person (recipient)
                         Promise.map(actions, function(action) {
-                            return action.setRecipient(pick(persons), { transaction: t });
+                            var recipient = pick(persons);
+                            action.subject = models.Action.subject(action.type, recipient);
+                            return Promise.all([
+                                action.setRecipient(recipient, { transaction: t }),
+                                action.save({ transaction: t })
+                            ]);
                         })
                     ])
                 });

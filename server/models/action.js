@@ -21,7 +21,6 @@ module.exports = function(sequelize, DataTypes) {
         },
         subject: {
             type: DataTypes.STRING,
-            allowNull: false,
             searchable: true,
             validate: {
                 notEmpty: true
