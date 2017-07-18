@@ -87,7 +87,7 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: true,
             get: function() {
-                return helpers.apiUrl + '/' + this.getDataValue('picture');
+                return helpers.apiUrl + this.getDataValue('picture');
             }
         },
         birthday: {

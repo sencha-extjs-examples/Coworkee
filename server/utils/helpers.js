@@ -7,12 +7,12 @@ var Helpers = {
     apiUrl: (function() {
         var direct = config.direct;
         if (direct.relativeUrl) {
-            return './';
+            return '';
         }
 
         var scheme = direct.protocol;
         var port = direct.port;
-        return (scheme? scheme + '://' : '//') + direct.server + (port? ':' + port : '');
+        return (scheme? scheme + '://' : '//') + direct.server + (port? ':' + port : '') + '/';
     }()),
 
     searchableAttributes: function(model) {
