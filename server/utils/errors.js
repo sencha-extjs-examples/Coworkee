@@ -11,6 +11,7 @@ var codes = {
     UNAUTHORIZED: -32099,
     AUTH_TOKEN_EXPIRED: -32098,
     AUTH_TOKEN_INVALID: -32097,
+    READONLY_SESSION: -32096,
     INVALID_PARAMS: -32001,
     NOT_IMPLEMENTED: -32000
 };
@@ -69,10 +70,19 @@ var types = {
         }
 
         return generate(
-            'Invalid Parameters',
+            'Invalid parameters',
             'InvalidParameters',
             codes.INVALID_PARAMS,
             { errors: data }
+        );
+    },
+
+    readonly: function(data) {
+        return generate(
+            'Read-only session, data not updated',
+            'ReadOnlySession',
+            codes.READONLY_SESSION,
+            data
         );
     }
 };

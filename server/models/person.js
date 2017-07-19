@@ -1,6 +1,7 @@
 "use strict";
 
-var errors = require('../utils/errors.js');
+var errors = require('../utils/errors');
+var helpers = require('../utils/helpers.js');
 
 module.exports = function(sequelize, DataTypes) {
     var Model = sequelize.define("Person", {
@@ -84,7 +85,10 @@ module.exports = function(sequelize, DataTypes) {
         },
         picture: {
             type: DataTypes.STRING,
-            allowNull: true
+            allowNull: true,
+            get: function() {
+                return helpers.apiUrl + this.getDataValue('picture');
+            }
         },
         birthday: {
             type: DataTypes.DATEONLY,

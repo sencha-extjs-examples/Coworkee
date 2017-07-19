@@ -10,7 +10,6 @@ var Service = {
     list: function(params, callback, sid, req) {
         session.verify(req).then(function() {
             var sequelize = models.sequelize;
-            var limit = params.limit || 25;
             var filters = [];
             var range = {};
 
@@ -18,14 +17,15 @@ var Service = {
             // and then join person records manually. Since we are building the SQL query
             // manually, this method will support only very basic filtering and sorting.
             (params.filter || []).forEach(function(filter) {
+                var value = sequelize.escape(filter.value);
                 switch (filter.property) {
                 case 'startDate':
-                    filters.push('date >= date("' + filter.value + '")');
-                    range.start = filter.value;
+                    filters.push('date >= date(' + value + ')');
+                    range.start = value;
                     break;
                 case 'endDate':
-                    filters.push('date < date("' + filter.value + '")');
-                    range.end = filter.value;
+                    filters.push('date < date(' + value + ')');
+                    range.end = value;
                     break;
                 default:
                     break;
@@ -33,13 +33,14 @@ var Service = {
             });
 
             var order = (params.sort || []).map(function(sorter) {
-                return sorter.property + ' ' + sorter.direction;
+                var direction = sorter.direction === 'DESC'? 'DESC' : 'ASC';
+                return '`' + sorter.property + '` ' + direction;
             }).join([',']) || 'date DESC';
 
             var where = filters.join(' AND ');
-            var ref = range.end? '"' + range.end + '"' :
-                range.start? '"' + range.start + '", "+365 days"' :
-                '"now", "+182 days"'
+            var ref = range.end? range.end :
+                range.start? range.start + ', \'+365 days\'' :
+                '\'now\', \'+182 days\''
 
             var queries = [
                 { type: 'birthday', column: 'birthday', frequency: 366 },
@@ -50,38 +51,45 @@ var Service = {
                 var column = events.column;
                 var frequency = events.frequency;
                 var leapday =
-                    '(strftime("%j", strftime("%Y-03-01", "now"))'+
-                    '-strftime("%j", strftime("%Y-03-01", ' + column + ')))';
+                    '(strftime(\'%j\', strftime(\'%Y-03-01\', \'now\'))'+
+                    '-strftime(\'%j\', strftime(\'%Y-03-01\', ' + column + ')))';
 
                 var days = frequency > 0?
                     '('+ frequency +
-                        ' + strftime("%j", ' + ref + ')'+
-                        ' - strftime("%j", ' + column + ')'+
+                        ' + strftime(\'%j\', ' + ref + ')'+
+                        ' - strftime(\'%j\', ' + column + ')'+
                         ' - ' + leapday + ') % ' + frequency:
                     'julianday(' + ref + ') - julianday(' + column + ')';
 
                 return 'SELECT *, '+
                         'date(julianday(' + ref + ') - days) AS date, '+
-                        '"' + events.type + '" AS type '+
+                        '\'' + events.type + '\' AS type '+
                     'FROM ('+
                         'SELECT id AS person_id, ' + days + ' AS days '+
                         'FROM people WHERE ' + column + ' IS NOT NULL AND days <= 365'+
                     ')';
-            }).join(" UNION ");
+            }).join(' UNION ');
 
             return Promise.all([
                 sequelize.query(
                     'SELECT COUNT(*) AS count '+
                     'FROM (' + queries + ') '+
-                    'WHERE ' + where),
+                    (where? 'WHERE ' + where : ''), {
+                        type: sequelize.QueryTypes.SELECT
+                    }),
                 sequelize.query(
                     'SELECT * FROM (' + queries + ') '+
-                    'WHERE ' + where + ' '+
+                    (where? 'WHERE ' + where + ' ' : '' ) +
                     'ORDER BY ' + order + ' '+
-                    'LIMIT ' + limit)
+                    'LIMIT :limit', {
+                        type: sequelize.QueryTypes.SELECT,
+                        replacements: {
+                            limit: params.limit || 25
+                        }
+                    })
             ]).then(function(results) {
-                var count = results[0][0][0].count;
-                var events = results[1][0];
+                var count = results[0][0].count;
+                var events = results[1];
                 var ids = unique(events.map(function(e) { return e.person_id; }));
                 return models.Person.scope('nested').findAll({
                     where: { id: { $in: ids } }

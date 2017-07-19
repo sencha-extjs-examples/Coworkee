@@ -21,7 +21,6 @@ module.exports = function(sequelize, DataTypes) {
         },
         subject: {
             type: DataTypes.STRING,
-            allowNull: false,
             searchable: true,
             validate: {
                 notEmpty: true
@@ -45,6 +44,22 @@ module.exports = function(sequelize, DataTypes) {
                         }]
                     }]
                 });
+            },
+
+            subject: function(action, recipient) {
+                switch (action) {
+                case 'phone':
+                    var extension = recipient.get('extension');
+                    return recipient.get('phone') + (extension? ':' + extension : '');
+                case 'profile':
+                    return recipient.get('username');
+                case 'email':
+                case 'linkedin':
+                case 'skype':
+                    return recipient.get(action);
+                default:
+                    return null;
+                }
             }
         }
     });

@@ -19,23 +19,10 @@ Ext.define('App.controller.Action', {
         }
     },
 
-    subject: function(action, record) {
-        switch (action) {
-        case 'phone':
-            var extension = record.get('extension');
-            return record.get('phone') + (extension? ':' + extension : '');
-        case 'profile':
-            return record.get('username');
-        default:
-            return record.get(action);
-        }
-    },
-
-    log: function(action, record, subject) {
+    log: function(action, record) {
         Ext.create('App.model.Action', {
             type: action,
-            recipient_id: record.getId(),
-            subject: subject || this.subject(action, record)
+            recipient_id: record.getId()
         }).save();
     },
 

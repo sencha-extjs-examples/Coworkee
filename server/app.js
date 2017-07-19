@@ -1,24 +1,16 @@
 var express = require('express');
 var cors = require('cors');
 var cron = require('node-cron');
-var merge = require('deepmerge');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var direct = require('extdirect');
-var config = require('./config.json');
-var data = require('./utils/data.js');
+var config = require('./utils/config');
+var data = require('./utils/data');
 
 require( "console-stamp" )(console);
-
-// Override main config (config.json) with potential local config (config.local.json): that's
-// useful when deploying the app on a server with different server url and port (Ext.Direct).
-try {
-    config = merge(config, require('./config.local.json'));
-} catch (e) {
-}
 
 var yargs = require('yargs')
     .option('client-path', {

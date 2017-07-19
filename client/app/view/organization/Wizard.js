@@ -33,6 +33,7 @@ Ext.define('App.view.organization.Wizard', {
             displayField: 'label',
             valueField: 'value',
             queryMode: 'local',
+            forceSelection: true,
             required: true,
             bind: {
                 value: '{record.manager_id}',

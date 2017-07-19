@@ -67,12 +67,9 @@ Ext.define('App.view.widgets.WizardController', {
         record.save({
             callback: function(result, operation) {
                 form.setMasked(false);
-                if (operation.hasException()) {
-                    form.setErrors(App.util.Errors.toForm(operation.getError()));
-                    return;
+                if (!App.util.Errors.process(operation, form)) {
+                    me.finalize();
                 }
-
-                me.finalize();
             }
         });
     },

@@ -132,6 +132,7 @@ Ext.define('App.view.person.Wizard', {
             displayField: 'label',
             valueField: 'value',
             queryMode: 'local',
+            forceSelection: true,
             required: true,
             bind: {
                 value: '{record.office_id}',
@@ -143,6 +144,7 @@ Ext.define('App.view.person.Wizard', {
             displayField: 'label',
             valueField: 'value',
             queryMode: 'local',
+            forceSelection: true,
             required: true,
             bind: {
                 value: '{record.organization_id}',

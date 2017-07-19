@@ -80,6 +80,11 @@ a {
     100% { @include rotate(360); }
 }
 
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
 body.launching {
     @include background-size(cover);
     background-color: $auth-background-color;
@@ -90,7 +95,7 @@ body.launching {
         @include animation(rotate-animation 1s linear infinite);
         @include transform-origin(50% 50%);
         @include background-size(cover);
-        background-image: url(/resources/images/loading.png);
+        background-image: url(get-resource-path('images/loading.png'));
         background-position: center;
         content: '';
         position: absolute;

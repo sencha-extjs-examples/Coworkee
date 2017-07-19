@@ -4,12 +4,14 @@
 
 "use strict";
 
-var errors = require('../utils/errors');
-var config = require('../config.json');
+var errors = require('./errors');
+var config = require('./config');
 var models = require('../models');
 var jwt = require('jsonwebtoken');
 
 module.exports = {
+
+    readonly: config.session.readonly,
 
     initiate: function(username, password, res) {
         return models.Person.scope('nested').findOne({
@@ -42,10 +44,10 @@ module.exports = {
         });
     },
 
-    verify: function(req) {
+    verify: function(request) {
         return new Promise(function(resolve, reject) {
             // https://jwt.io/introduction/#how-do-json-web-tokens-work-
-            var header = req.headers && req.headers.authorization;
+            var header = request.headers && request.headers.authorization;
             var matches = header? /^Bearer (\S+)$/.exec(header) : null;
             var token = matches && matches[1];
 

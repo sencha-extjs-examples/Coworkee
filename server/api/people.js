@@ -6,6 +6,27 @@ var session = require('../utils/session.js');
 var errors = require('../utils/errors.js');
 var models = require('../models');
 
+function writableFields(params) {
+    return helpers.extractFields(params, [
+        'email',
+        'username',
+        'password',
+        'firstname',
+        'lastname',
+        'title',
+        'phone',
+        'extension',
+        'skype',
+        'linkedin',
+        'picture',
+        'birthday',
+        'started',
+        'ended',
+        'office_id',
+        'organization_id'
+    ]);
+}
+
 var Service = {
     get: function(params, callback, sid, req) {
         session.verify(req).then(function() {
@@ -54,7 +75,16 @@ var Service = {
 
     insert: function(params, callback, sid, req) {
         session.verify(req).then(function() {
-            return models.Person.create(params);
+            return models.sequelize.transaction(function(t) {
+                return models.Person.create(writableFields(params), {
+                    transaction: t
+                }).then(function(row) {
+                    if (session.readonly) {
+                        throw errors.types.readonly();
+                    }
+                    return row;
+                });
+            });
         }).then(function(row) {
             callback(null, { data: row });
         }).catch(function(err) {
@@ -83,7 +113,16 @@ var Service = {
                 delete params.password;
             }
 
-            return row.update(params);
+            return models.sequelize.transaction(function(t) {
+                return row.update(writableFields(params), {
+                    transaction: t
+                }).then(function(row) {
+                    if (session.readonly) {
+                        throw errors.types.readonly();
+                    }
+                    return row;
+                });
+            });
         }).then(function(row) {
             // reload record data in case associations have been updated.
             return row.reload();
