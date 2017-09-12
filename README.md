@@ -20,7 +20,7 @@ Install the server node.js dependencies:
 Install the Ext JS framework for the application:
 
     $ cd client
-    $ sencha app install ~/sencha-sdks
+    $ sencha app upgrade ~/sencha-sdks/ext-<version of the sdk>
 
 Development build:
 
