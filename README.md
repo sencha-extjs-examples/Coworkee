@@ -21,6 +21,11 @@ Install the Ext JS framework for the application:
 
     $ cd client
     $ sencha app install ~/sencha-sdks
+    or
+    $ sencha app upgrade ~/sencha-sdks/ext-<version of the sdk>
+
+Note: If you use `sencha app install ~/sencha-sdks` here, the version of the SDK inside ~/sencha-sdks will
+have to mach the version specified in `workspace.json`.
 
 Development build:
 
