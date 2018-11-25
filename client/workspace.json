@@ -7,7 +7,7 @@
      * package name. For example:
      *
      *      "frameworks": {
-     *          "ext": "ext",
+     *          
      *          "ext-x": "/absolute/path/to/ext",
      *          "ext-y": {
      *              "source": "../relative/path/to/ext",
@@ -21,11 +21,12 @@
      *      }
      *
      */
-    "frameworks": {
-        "ext": {
+    "frameworks": {        "ext": {
             "path":"ext",
-            "version":"6.5.1"
+            "version":"6.6.0.258"
         }
+
+        
     },
 
     /**

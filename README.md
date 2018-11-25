@@ -43,7 +43,7 @@ Production build:
 Note: by default, `npm start` will use the **development** build. To run the production
 build, use the following command instead:
 
-    $ npm start -- --client-environment=production
+    $ npm start --client-environment=production
 
 Open your browser on http://localhost:3000
 
