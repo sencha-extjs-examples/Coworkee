@@ -1,6 +1,6 @@
 "use strict";
 
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
     var Model = sequelize.define("Action", {
         id: {
             type: DataTypes.UUID,
@@ -28,7 +28,7 @@ module.exports = function(sequelize, DataTypes) {
         }
     });
 
-    Model.associate = function(models) {
+    Model.associate = function (models) {
         Model.belongsTo(models.Person, { as: 'recipient', constraints: false });
         Model.belongsTo(models.Person, {as: 'actions' });
         Model.addScope('nested', {
@@ -46,11 +46,11 @@ module.exports = function(sequelize, DataTypes) {
         });
     };
 
-    Model.subject = function(action, recipient) {
+    Model.subject = function (action, recipient) {
         switch (action) {
         case 'phone':
             var extension = recipient.get('extension');
-            return recipient.get('phone') + (extension? ':' + extension : '');
+            return recipient.get('phone') + (extension ? ':' + extension : '');
         case 'profile':
             return recipient.get('username');
         case 'email':
