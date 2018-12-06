@@ -116,43 +116,42 @@ module.exports = function(sequelize, DataTypes) {
             attributes: {
                 exclude: ['password']
             }
-        },
-
-        classMethods: {
-            associate: function(models) {
-                Model.belongsTo(models.Organization, { as: 'organization' });
-                Model.belongsTo(models.Office, { as: 'office' });
-                Model.hasMany(models.Action, { as: 'actions' });
-                Model.addScope('nested', {
-                    attributes: {
-                        exclude: ['password']
-                    },
-                    include: [
-                        { model: models.Office.scope('nested'), as: 'office' },
-                        { model: models.Organization.scope('nested'), as: 'organization' }
-                    ]
-                });
-            },
-
-            lookup: function(identifier) {
-                return this.findOne({
-                    where: {
-                        $or: [
-                            { id: identifier },
-                            { username: identifier },
-                            { email: identifier }
-                        ]
-                    }
-                }).then(function(row) {
-                    if (!row) {
-                        throw errors.generate('Unknown person with id/username/email: ' + identifier);
-                    }
-
-                    return row;
-                });
-            }
         }
+
     });
+
+   Model.associate = function(models) {
+        Model.belongsTo(models.Organization, { as: 'organization' });
+        Model.belongsTo(models.Office, { as: 'office' });
+        Model.hasMany(models.Action, { as: 'actions' });
+        Model.addScope('nested', {
+            attributes: {
+                exclude: ['password']
+            },
+            include: [
+                { model: models.Office.scope('nested'), as: 'office' },
+                { model: models.Organization.scope('nested'), as: 'organization' }
+            ]
+        });
+    };
+
+    Model.lookup = function(identifier) {
+        return this.findOne({
+            where: {
+                $or: [
+                    { id: identifier },
+                    { username: identifier },
+                    { email: identifier }
+                ]
+            }
+        }).then(function(row) {
+            if (!row) {
+                throw errors.generate('Unknown person with id/username/email: ' + identifier);
+            }
+
+            return row;
+        });
+    };
 
     return Model;
 };

@@ -1,6 +1,6 @@
 "use strict";
 
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
     var Model = sequelize.define("Action", {
         id: {
             type: DataTypes.UUID,
@@ -26,43 +26,41 @@ module.exports = function(sequelize, DataTypes) {
                 notEmpty: true
             }
         }
-    }, {
-        classMethods: {
-            associate: function(models) {
-                Model.belongsTo(models.Person, { as: 'recipient', constraints: false });
-                Model.belongsTo(models.Person);
-                Model.addScope('nested', {
-                    include: [{
-                        model: models.Person,
-                        as: 'recipient',
-                        include: [{
-                            model: models.Office,
-                            as: 'office'
-                        }, {
-                            model: models.Organization,
-                            as: 'organization'
-                        }]
-                    }]
-                });
-            },
-
-            subject: function(action, recipient) {
-                switch (action) {
-                case 'phone':
-                    var extension = recipient.get('extension');
-                    return recipient.get('phone') + (extension? ':' + extension : '');
-                case 'profile':
-                    return recipient.get('username');
-                case 'email':
-                case 'linkedin':
-                case 'skype':
-                    return recipient.get(action);
-                default:
-                    return null;
-                }
-            }
-        }
     });
+
+    Model.associate = function (models) {
+        Model.belongsTo(models.Person, { as: 'recipient', constraints: false });
+        Model.belongsTo(models.Person, {as: 'actions' });
+        Model.addScope('nested', {
+            include: [{
+                model: models.Person,
+                as: 'recipient',
+                include: [{
+                    model: models.Office,
+                    as: 'office'
+                }, {
+                    model: models.Organization,
+                    as: 'organization'
+                }]
+            }]
+        });
+    };
+
+    Model.subject = function (action, recipient) {
+        switch (action) {
+        case 'phone':
+            var extension = recipient.get('extension');
+            return recipient.get('phone') + (extension ? ':' + extension : '');
+        case 'profile':
+            return recipient.get('username');
+        case 'email':
+        case 'linkedin':
+        case 'skype':
+            return recipient.get(action);
+        default:
+            return null;
+        }
+    };
 
     return Model;
 };

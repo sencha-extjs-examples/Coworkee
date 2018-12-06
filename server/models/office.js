@@ -66,20 +66,18 @@ module.exports = function(sequelize, DataTypes) {
                 return this.setDataValue('location', JSON.stringify(value));
             }
         }
-    }, {
-        classMethods: {
-            associate: function(models) {
-                 Model.hasMany(models.Person, { as: 'members' });
-
-                 // http://stackoverflow.com/a/37817966
-                 Model.addScope('nested', {
-                    attributes: {
-                        include: [[sequelize.literal('(SELECT COUNT(*) FROM People WHERE People.office_id = Office.id)'), 'headcount']]
-                    }
-                 });
-            }
-        }
     });
+
+    Model.associate = function(models) {
+            Model.hasMany(models.Person, { as: 'members' });
+
+            // http://stackoverflow.com/a/37817966
+            Model.addScope('nested', {
+            attributes: {
+                include: [[sequelize.literal('(SELECT COUNT(*) FROM People WHERE People.office_id = Office.id)'), 'headcount']]
+            }
+            });
+    };   
 
     return Model;
 };

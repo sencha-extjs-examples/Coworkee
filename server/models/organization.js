@@ -22,29 +22,27 @@ module.exports = function(sequelize, DataTypes) {
                 notEmpty: true
             }
         }
-    },{
-        classMethods: {
-            associate: function(models) {
-                Model.hasMany(models.Person, { as: 'members' });
-                Model.belongsTo(models.Person, { as: 'manager', constraints: false });
-
-                // http://stackoverflow.com/a/37817966
-                Model.addScope('nested', {
-                    attributes: {
-                        include: [[sequelize.literal('(SELECT COUNT(*) FROM People WHERE People.organization_id = Organization.id)'), 'headcount']]
-                    },
-                    include: [{
-                        model: models.Person,
-                        as: 'manager',
-                        include: [{
-                            model: models.Office,
-                            as: 'office'
-                        }]
-                    }]
-                });
-            }
-        }
     });
 
+    Model.associate = function(models) {
+        Model.hasMany(models.Person, { as: 'members' });
+        Model.belongsTo(models.Person, { as: 'manager', constraints: false });
+
+        // http://stackoverflow.com/a/37817966
+        Model.addScope('nested', {
+            attributes: {
+                include: [[sequelize.literal('(SELECT COUNT(*) FROM People WHERE People.organization_id = Organization.id)'), 'headcount']]
+            },
+            include: [{
+                model: models.Person,
+                as: 'manager',
+                include: [{
+                    model: models.Office,
+                    as: 'office'
+                }]
+            }]
+        });
+    };
+    
     return Model;
 };

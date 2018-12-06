@@ -86,6 +86,7 @@ Ext.define('App.view.tablet.person.Browse', {
             ]
         }, {
             sortable: false,
+            dataIndex: 'email',
             text: 'Email/Phone',
             flex: 1,
             cell: {
