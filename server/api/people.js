@@ -60,8 +60,9 @@ var Service = {
                     return { count: 1, rows: [person] };
                 });
             } else {
-                return models.Person.scope('nested').findAndCount(
-                    helpers.sequelizify(params, models.Person));
+                return models.Person.scope('nested').findAndCountAll(
+                    helpers.sequelizify(params, models.Person)
+                );
             }
         }).then(function(result) {
             callback(null, {
@@ -69,6 +70,7 @@ var Service = {
                 total: result.count
             });
         }).catch(function(err) {
+            console.log(err);
             callback(err);
         });
     },

@@ -2,7 +2,7 @@
 
 var models = require("../models");
 var sequelize = models.sequelize;
-var Promise = sequelize.Promise;
+var Promise = models.Sequelize.Promise;
 
 function pick(items, index) {
     var count = items.length;
@@ -31,7 +31,7 @@ module.exports = {
                     Promise.map(require('../data/People.json'), function(data) {
                         return models.Person.create(data, { include: [{ model: models.Action, as: 'actions' }], transaction: t });
                     })
-                ])
+                ]);
             });
         }).then(function() {
             return sequelize.transaction(function(t) {
@@ -63,11 +63,11 @@ module.exports = {
                                 action.save({ transaction: t })
                             ]);
                         })
-                    ])
+                    ]);
                 });
             });
         }).then(function() {
             console.info('Populating database: DONE');
-        })
+        });
     }
 };

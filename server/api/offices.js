@@ -20,7 +20,7 @@ function writableFields(params) {
 var Service = {
     list: function(params, callback, sid, req) {
         session.verify(req).then(function() {
-            return models.Office.scope('nested').findAndCount(
+            return models.Office.scope('nested').findAndCountAll(
                 helpers.sequelizify(params, models.Office));
         }).then(function(result) {
             callback(null, {

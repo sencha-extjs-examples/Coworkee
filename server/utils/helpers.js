@@ -80,7 +80,7 @@ var Helpers = {
                         break;
                     }
 
-                    if (!(prop in model.attributes)) {
+                    if (!(prop in model.tableAttributes)) {
                         // let's try in another table:
                         // https://github.com/sequelize/sequelize/issues/3095#issuecomment-149277205
                         prop = '$' + prop + '$';
@@ -95,8 +95,9 @@ var Helpers = {
             query.order = query.order || [];
             params.sort.forEach(function(sorter) {
                 var prop = sorter.property;
+
                 query.order.push([
-                    prop in model.attributes? prop : model.sequelize.col(prop),
+                    prop in model.tableAttributes ? prop : model.sequelize.col(prop),
                     sorter.direction
                 ]);
             });
@@ -152,7 +153,7 @@ var Helpers = {
                 return [ params.id ];
             } else if (Array.isArray(params)) {
                 return params.map(function(param) {
-                    return param.id
+                    return param.id;
                 });
             }
         }
@@ -172,6 +173,6 @@ var Helpers = {
         });
         return fields;
     }
-}
+};
 
 module.exports = Helpers;

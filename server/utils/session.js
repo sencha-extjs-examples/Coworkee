@@ -8,6 +8,8 @@ var errors = require('./errors');
 var config = require('./config');
 var models = require('../models');
 var jwt = require('jsonwebtoken');
+var Op = models.Sequelize.Op;
+
 
 module.exports = {
 
