@@ -4,8 +4,8 @@ Ext JS Sample Application - Employee Directory (Coworkee)
 ## Getting started
 ### Prerequisite
 - Install [Node.js](https://nodejs.org/) (^6.9.2)
-- Install [Sencha Cmd](https://www.sencha.com/products/sencha-cmd) (^6.5.1)
-- Download [Sencha Ext JS](https://www.sencha.com/products/extjs) (^6.5.1).  We recommend
+- Install [Sencha Cmd](https://www.sencha.com/products/sencha-cmd) (^7.0.0)
+- Download [Sencha Ext JS](https://www.sencha.com/products/extjs) (^7.0.0).  We recommend
  extracting Ext JS into a `"sencha-sdks"` folder in your home directory.
 
 On Windows the "~" part of the path will be replaced by something like "C:\Users\Me\".
