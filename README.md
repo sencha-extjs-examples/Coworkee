@@ -4,11 +4,7 @@ Ext JS Sample Application - Employee Directory (Coworkee)
 ## Getting started
 ### Prerequisite
 - Install [Node.js](https://nodejs.org/) (^6.9.2)
-- Install [Sencha Cmd](https://www.sencha.com/products/sencha-cmd) (^7.0.0)
-- Download [Sencha Ext JS](https://www.sencha.com/products/extjs) (^7.0.0).  We recommend
- extracting Ext JS into a `"sencha-sdks"` folder in your home directory.
-
-On Windows the "~" part of the path will be replaced by something like "C:\Users\Me\".
+- Install [Sencha Ext-Gen](https://docs.sencha.com/extjs/7.5.1/guides/getting_started/getting_started_with_npm.html) (npm install -g @sencha/ext-gen)
 
 ### Install the server
 Install the server node.js dependencies:
@@ -17,23 +13,24 @@ Install the server node.js dependencies:
     $ npm install
 
 ### Build the client
-Install the Ext JS framework for the application:
+Install the Ext JS framework dependencies:
 
     $ cd client
-    $ sencha app install ~/sencha-sdks
-    or
-    $ sencha app upgrade ~/sencha-sdks/ext-<version of the sdk>
+    $ npm install
 
-Note: If you use `sencha app install ~/sencha-sdks` here, the version of the SDK inside ~/sencha-sdks will
-have to mach the version specified in `workspace.json`.
+Upgrade App [ExtMoveToLatest](https://docs.sencha.com/extjs/7.5.1/guides/using_systems/using_npm/extmovetolatest.html) 
+
+    $ npm install -g @sencha/ext-movetolatest
+    $ ext-movetolatest
+    $ npm install
 
 Development build:
 
-    $ sencha app build --development
+    $ npm start
 
 Production build:
 
-    $ sencha app build --production
+    $ npm run build
 
 ### Run the app
 

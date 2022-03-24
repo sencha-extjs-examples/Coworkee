@@ -4,6 +4,3 @@ bootstrap.*
 classic.json*
 modern.json*
 .sencha
-/generatedFiles 
-/cordova 
-/node_modules
