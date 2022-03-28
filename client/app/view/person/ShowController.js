@@ -19,7 +19,7 @@ Ext.define('App.view.person.ShowController', {
             history.load();
 
             coworkers.filter([
-                { property: 'organization_id', value: record.get('organization_id') || record.get('organizationId') },
+                { property: 'organizationId', value: record.get('organizationId') },
                 { property: 'id', value: record.get('id'), operator: '!=' }
             ]);
 
