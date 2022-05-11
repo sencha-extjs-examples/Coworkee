@@ -17,6 +17,8 @@ Ext.define('App.view.tablet.person.Browse', {
         emptyText: 'No employee was found to match your search',
         bind: '{people}',
         ui: 'listing',
+        collapsible: false,
+        variableHeights: true,
 
         selectable: {
             disabled: true
