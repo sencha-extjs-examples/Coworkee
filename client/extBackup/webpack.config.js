@@ -29,9 +29,20 @@ module.exports = async function (env) {
   var browser       = get('browser',       'yes')
   var watch         = get('watch',         'yes')
   var verbose       = get('verbose',       'no')
-  var isProd        = false;
+  var cmdopts       = get('cmdopts',     [])
+  var isProd      = false
   
-  if (environment === 'production') { isProd = true; }
+  if (environment === 'production' ||
+        (cmdopts.includes('--production') ||
+         cmdopts.includes('--environment=production') ||
+         cmdopts.includes('-e=production') ||
+         cmdopts.includes('-pr'))
+      ) 
+  {
+    browser = 'no'
+    watch = 'no'
+    isProd = true
+  }
 
   // The build.xml Sencha Cmd plugin uses a regex to locate the webpack bundle for use in app.json to be included in 
   // the different build environments. For development builds, the file is served in memory.
@@ -57,7 +68,8 @@ module.exports = async function (env) {
         treeshake: treeshake,
         browser: browser,
         watch: watch,
-        verbose: verbose
+        verbose: verbose,
+        cmdopts: cmdopts
       })
     ]
     return {
@@ -76,22 +88,23 @@ module.exports = async function (env) {
       resolve: resolve,
       performance: { hints: false },
       stats: 'none',
-      optimization: { noEmitOnErrors: true },
+      optimization: { emitOnErrors: false },
       node: false,
       devServer: {
-        watchOptions: {
-          ignored: ignoreFolders
-        },
-        contentBase: [path.resolve(__dirname, outputFolder)],
-        watchContentBase: !isProd,
         liveReload: !isProd,
         historyApiFallback: !isProd,
         host: host,
         port: port,
-        disableHostCheck: isProd,
+        allowedHosts: 'all',
         compress: isProd,
-        inline: !isProd,
-        stats: stats
+        static: {
+          directory: path.resolve(__dirname, outputFolder),
+          watch: isProd ? false : { ignored: ignoreFolders }
+        },        
+        devMiddleware: {
+          stats: stats
+        },
+        // inline: !isProd, // this was removed without replacement - https://github.com/webpack/webpack-dev-server/blob/master/migration-v4.md
       }
     }
   })

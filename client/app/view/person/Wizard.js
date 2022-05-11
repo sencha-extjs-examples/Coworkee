@@ -135,7 +135,7 @@ Ext.define('App.view.person.Wizard', {
             forceSelection: true,
             required: true,
             bind: {
-                value: '{record.office_id}',
+                value: '{record.officeId}',
                 store: '{offices}'
             }
         }, {
@@ -147,7 +147,7 @@ Ext.define('App.view.person.Wizard', {
             forceSelection: true,
             required: true,
             bind: {
-                value: '{record.organization_id}',
+                value: '{record.organizationId}',
                 store: '{organizations}'
             }
         }]

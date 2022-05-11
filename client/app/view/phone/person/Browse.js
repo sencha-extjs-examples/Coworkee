@@ -55,7 +55,7 @@ Ext.define('App.view.phone.person.Browse', {
                 }
             }],
             right: [{
-                iconCls: 'x-fa fa-pencil',
+                iconCls: 'far fa-pen',
                 commit: 'onEditAction',
                 text: 'Edit',
                 ui: 'edit'

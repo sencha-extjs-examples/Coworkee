@@ -25,7 +25,7 @@ Ext.define('App.view.widgets.Show', {
                 items: {
                     edit: {
                         xtype: 'button',
-                        iconCls: 'x-fa fa-pencil',
+                        iconCls: 'far fa-pen',
                         handler: 'onEditTap',
                         weight: 10
                     }
