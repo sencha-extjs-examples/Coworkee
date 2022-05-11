@@ -46,7 +46,7 @@ Ext.define('App.view.phone.person.Browse', {
                     subject: 'skype'
                 }
             }, {
-                iconCls: 'x-fa fa-envelope-o',
+                iconCls: 'far fa-envelope',
                 commit: 'onEmailAction',
                 text: 'Email',
                 ui: 'email',
