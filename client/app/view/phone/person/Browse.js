@@ -38,7 +38,7 @@ Ext.define('App.view.phone.person.Browse', {
         }, {
             type: 'listswiper',
             left: [{
-                iconCls: 'x-fa fa-skype',
+                iconCls: 'x-fab fa-skype',
                 commit: 'onSkypeAction',
                 text: 'Skype',
                 ui: 'skype',
@@ -46,7 +46,7 @@ Ext.define('App.view.phone.person.Browse', {
                     subject: 'skype'
                 }
             }, {
-                iconCls: 'x-fa fa-envelope-o',
+                iconCls: 'far fa-envelope',
                 commit: 'onEmailAction',
                 text: 'Email',
                 ui: 'email',
@@ -55,7 +55,7 @@ Ext.define('App.view.phone.person.Browse', {
                 }
             }],
             right: [{
-                iconCls: 'x-fa fa-pencil',
+                iconCls: 'far fa-pen',
                 commit: 'onEditAction',
                 text: 'Edit',
                 ui: 'edit'
@@ -78,8 +78,8 @@ Ext.define('App.view.phone.person.Browse', {
         itemTpl: [
             '<div class="picture" style="background-image:url({picture})"></div>',
             '<div class="item-details">',
-                '<div class="item-title">{fullname}</div> ',
-                '<div class="item-caption">{title}</div>',
+            '<div class="item-title">{fullname}</div> ',
+            '<div class="item-caption">{title}</div>',
             '</div>'
         ],
         listeners: {

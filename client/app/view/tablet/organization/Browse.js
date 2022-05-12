@@ -17,6 +17,8 @@ Ext.define('App.view.tablet.organization.Browse', {
         emptyText: 'No organization was found to match your search',
         bind: '{organizations}',
         ui: 'listing',
+        collapsible: false,
+        variableHeights: true,
 
         selectable: {
             disabled: true

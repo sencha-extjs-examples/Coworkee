@@ -22,7 +22,7 @@ Ext.define('App.view.widgets.ShowHeader', {
 
         edit: {
             xtype: 'button',
-            iconCls: 'x-fa fa-pencil',
+            iconCls: 'far fa-pen',
             handler: 'onEditTap',
             text: 'Edit',
             weight: 10,

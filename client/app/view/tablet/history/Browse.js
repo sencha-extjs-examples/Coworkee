@@ -15,6 +15,8 @@ Ext.define('App.view.tablet.history.Browse', {
         emptyText: 'No activity was found to match your search',
         bind: '{history}',
         ui: 'listing',
+        collapsible: false,
+        variableHeights: true,
 
         selectable: {
             disabled: true

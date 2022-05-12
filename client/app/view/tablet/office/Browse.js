@@ -17,6 +17,8 @@ Ext.define('App.view.tablet.office.Browse', {
         emptyText: 'No office was found to match your search',
         bind: '{offices}',
         ui: 'listing',
+        collapsible: false,
+        variableHeights: true,
 
         selectable: {
             disabled: true

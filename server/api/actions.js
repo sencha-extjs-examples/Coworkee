@@ -1,9 +1,11 @@
 "use strict";
 
+const crypto = require('crypto');
 var helpers = require('../utils/helpers.js');
 var session = require('../utils/session.js');
 var errors = require('../utils/errors.js');
 var models = require('../models');
+const { sequelize } = require('../models');
 
 var Service = {
     list: function(params, callback, sid, req) {
@@ -24,19 +26,55 @@ var Service = {
 
     insert: function(params, callback, sid, req) {
         session.verify(req).then(function(session) {
-            return models.Person.lookup(params.recipient_id).then(function(person) {
+            return models.Person.lookup(params.recipient_id).then(async function(person) {
                 var subject = models.Action.subject(params.type, person);
                 if (subject === null) {
                     throw errors.types.invalidParams({
                         path: 'type', message: 'Invalid action type'
                     });
                 }
+                const uid = crypto.randomUUID();
+                const d = new Date();
+                const year = d.getFullYear();
+                const month = d.getMonth();
+                const day = d.getDay();
+                const hour = d.getHours();
+                const minutes = d.getMinutes();
+                const seconds = d.getSeconds();
 
-                return session.user.createAction({
-                    recipient_id: params.recipient_id,
-                    type: params.type,
-                    subject: subject
-                });
+                const mysqlDate = `${year}-${month < 9 ? `0${month}` : month}-${day < 9 ? `0${day}` : day} ${hour}:${minutes}:${seconds}.000 +00:00`;
+
+                const query = `INSERT INTO actions (
+                "id",
+                "type",
+                "subject",
+                "created",
+                "updated",
+                "recipient_id",
+                "person_id") VALUES (
+                "${uid}",
+                "${params.type}",
+                "${subject}",
+                "${mysqlDate}",
+                "${mysqlDate}",
+                "${params.recipient_id}",
+                "${session.user.id}");`;
+
+                try {
+                    await sequelize.query(query);
+                    return {
+                        id: uid,
+                        type: params.type,
+                        subject: subject,
+                        person_id: session.user.id,
+                        recipient_id: params.recipient_id,
+                        updated: mysqlDate,
+                        created: mysqlDate
+                    };
+                } catch (error) {
+                    throw new Error(error)
+                }
+
             });
         }).then(function(row) {
             callback(null, {

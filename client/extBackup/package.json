@@ -1,0 +1,50 @@
+{
+    "name": "App",
+    "product": "ext",
+    "version": "1.0.0-0",
+    "description": "",
+    "repository": {
+        "type": "git",
+        "url": ""
+    },
+    "keywords": [],
+    "author": "",
+    "license": "",
+    "bugs": {
+        "url": ""
+    },
+    "homepage": "",
+    "scripts": {
+        "start": "npm run dev",
+        "clean": "rimraf build",
+        "dev": "webpack-dev-server --env browser=yes --env verbose=no",
+        "build": "npm run clean && cross-env webpack --env environment=production --env treeshake=yes",
+        "build:testing": "npm run clean && cross-env webpack --env treeshake=yes --env cmdopts=--testing"
+    },
+    "dependencies": {
+        "@sencha/ext": "~7.5.1",
+        "@sencha/ext-font-awesome": "^7.5.1",
+        "@sencha/ext-google": "^7.5.1",
+        "@sencha/ext-modern": "~7.5.1",
+        "@sencha/ext-modern-theme-triton": "^7.5.1"
+    },
+    "devDependencies": {
+        "@babel/cli": "^7.5.5",
+        "@babel/core": "^7.5.5",
+        "@babel/plugin-proposal-object-rest-spread": "^7.5.5",
+        "@babel/plugin-transform-async-to-generator": "^7.5.1",
+        "@babel/plugin-transform-regenerator": "^7.4.5",
+        "@babel/preset-env": "^7.5.5",
+        "@sencha/ext-webpack-plugin": "~7.5.1",
+        "babel-loader": "^8.0.6",
+        "babel-plugin-add-module-exports": "^1.0.2",
+        "cross-env": "^5.2.0",
+        "lodash.find": "^4.6.0",
+        "portfinder": "^1.0.21",
+        "replace": "^1.1.1",
+        "rimraf": "^3.0.2",
+        "webpack": "^5.55.1",
+        "webpack-cli": "^4.8.0",
+        "webpack-dev-server": "^4.2.1"
+    }
+}

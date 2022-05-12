@@ -36,7 +36,7 @@ Ext.define('App.view.phone.office.Browse', {
         }, {
             type: 'listswiper',
             right: [{
-                iconCls: 'x-fa fa-pencil',
+                iconCls: 'far fa-pen',
                 commit: 'onEditAction',
                 text: 'Edit',
                 ui: 'edit'

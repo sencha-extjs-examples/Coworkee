@@ -46,7 +46,7 @@ Ext.define('App.view.widgets.BrowseController', {
             }
 
             dirty = true;
-            if (value == null) {
+            if (Ext.isEmpty(value)) {
                 store.removeFilter(key, true);
             } else {
                 store.filter(key, value, true);

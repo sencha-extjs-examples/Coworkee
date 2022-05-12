@@ -62,7 +62,7 @@ Ext.define('App.view.home.HomeHeader', {
             cls: 'header-clock',
             tpl: [
                 '<div class="date">{time:date("l, F d")}</div>',
-                '<div class="time"><span class="x-fa fa-clock-o"></span> {time:date("G:ia")}</div>'
+                '<div class="time"><span class="far fa-clock"></span> {time:date("G:ia")}</div>'
             ],
             bind: {
                 data: {

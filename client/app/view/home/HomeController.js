@@ -16,6 +16,10 @@ Ext.define('App.view.home.HomeController', {
 
     initViewModel: function(vm) {
         vm.bind('{range}', this.onRangeChange, this);
+
+        if (!vm.getStore('events').loadCount) {
+            this.refresh();
+        }
     },
 
     update: function() {
@@ -27,10 +31,10 @@ Ext.define('App.view.home.HomeController', {
         vm.set({
             time: now,
             greeting:
-                Ext.Date.isWeekend(now)? "Enjoy your weekend" :
-                hours < 13? "Good morning" :
-                hours < 17? "Good afternoon" :
-                "Good evening"
+                Ext.Date.isWeekend(now) ? "Enjoy your weekend" :
+                    hours < 13 ? "Good morning" :
+                        hours < 17 ? "Good afternoon" :
+                            "Good evening"
         });
 
         Ext.defer(function() {
@@ -55,29 +59,29 @@ Ext.define('App.view.home.HomeController', {
             filters = [];
 
         switch (range) {
-        case 'upcoming':
-            direction = 'ASC';
-            filters.push({
-                property: 'startDate',
-                value: D.add(today, D.DAY, 1)
-            });
-            break;
-        case 'past':
-            filters.push({
-                property: 'endDate',
-                value: D.add(today, D.DAY, -7)
-            });
-            break;
-        case 'recent':
-        default:
-            filters.push({
-                property: 'startDate',
-                value: D.add(today, D.DAY, -7)
-            }, {
-                property: 'endDate',
-                value: D.add(today, D.DAY, 1)
-            });
-            break;
+            case 'upcoming':
+                direction = 'ASC';
+                filters.push({
+                    property: 'startDate',
+                    value: D.add(today, D.DAY, 1)
+                });
+                break;
+            case 'past':
+                filters.push({
+                    property: 'endDate',
+                    value: D.add(today, D.DAY, -7)
+                });
+                break;
+            case 'recent':
+            default:
+                filters.push({
+                    property: 'startDate',
+                    value: D.add(today, D.DAY, -7)
+                }, {
+                    property: 'endDate',
+                    value: D.add(today, D.DAY, 1)
+                });
+                break;
         }
 
         store.clearFilter(true);

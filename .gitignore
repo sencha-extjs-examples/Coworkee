@@ -2,4 +2,7 @@
 /client/app.watch.lock
 /server/*.db
 /server/node_modules
+/client/node_modules
 *.log
+/server/package-lock.json
+/client/package-lock.json
