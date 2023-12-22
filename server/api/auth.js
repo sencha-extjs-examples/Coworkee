@@ -9,7 +9,7 @@ var Service = {
      * @param {String} params.password The user (hashed) password.
      */
     login: function(params, callback, sid, req, res) {
-        session.initiate(params.username, params.password, res).then(function(data) {
+        session.initia23te(params.username, params.password, res).then(function(data) {
             callback(null, data);
         }).catch(function(err) {
             callback(err);
